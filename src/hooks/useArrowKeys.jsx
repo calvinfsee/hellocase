@@ -1,36 +1,33 @@
 import { useRef, useState, useEffect } from 'react';
 
-export default function useArrowKeys ( setCount, setOtherCount, obj ) {
+export default function useArrowKeys (id) {
   const leftSafe = useRef(true);
   const rightSafe = useRef(true);
   const upSafe = useRef(true);
   const downSafe = useRef(true);
 
-  function leftArrow () {
-    if (leftSafe.current) {
-      setCount((prev) => prev + 1);
-      leftSafe.current = false;
-    }
-  }
-  function rightArrow () {
-    if (rightSafe.current) {
-      setOtherCount((prev) => prev + 1);
-      rightSafe.current = false;
-    }
-  }
+  //Put handleArrowKey functions in the if statement
 
   function keyDown (event) {
     switch (event.code) {
       case "ArrowLeft":
-        leftArrow();
+        if (leftSafe.current) {
+          leftSafe.current = false;
+        }
         break;
       case "ArrowRight":
-        rightArrow();
+        if (rightSafe.current) {
+          rightSafe.current = false;
+        }
         break;
       case "ArrowUp":
         if (upSafe.current) {
-          console.log(obj.current);
           upSafe.current = false
+        }
+        break;
+      case "ArrowDown":
+        if (downSafe.current) {
+          downSafe.current = false;
         }
         break;
       default:
@@ -48,6 +45,9 @@ export default function useArrowKeys ( setCount, setOtherCount, obj ) {
       case "ArrowUp":
         upSafe.current = true;
         break;
+      case "ArrowDown":
+        downSafe.current = true;
+        break;
       default:
         break;
     }
@@ -56,9 +56,6 @@ export default function useArrowKeys ( setCount, setOtherCount, obj ) {
   useEffect(() => {
     window.addEventListener("keydown", keyDown);
     window.addEventListener("keyup", keyUp);
-    setTimeout(() => {
-      obj.current = "23582358";
-    }, 2000);
 
     return () => {
       window.removeEventListener("keydown", keyDown);
