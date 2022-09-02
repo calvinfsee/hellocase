@@ -8,24 +8,28 @@ import { auth, database } from '../firebase.js';
 export default function GameContainer ({ playerId, loading }) {
   const [players, setPlayers] = useState({});
   const allPlayerRef = useRef(ref(database, `players`));
+  const playersRef = useRef(players);
 
   useEffect(() => {
     onValue(allPlayerRef.current, (snapshot) => {
       //Fires whenever change occurs
       const newPlayers = snapshot.val() || {};
+      playersRef.current = newPlayers;
       setPlayers(newPlayers);
     });
     onChildAdded(allPlayerRef.current, (snapshot) => {
       //Fires whenever a new node is added to the tree
       const addedPlayer = snapshot.val();
+
       setPlayers((prev) => {
         const newPlayerList = {...prev, addedPlayer};
+        playersRef.current = newPlayerList;
         return newPlayerList;
       });
     });
   }, []);
 
-  useArrowKeys(playerId);
+  useArrowKeys(playerId, playersRef);
 
   function renderPlayers () {
     const playerIds = Object.keys(players);
