@@ -3,4 +3,12 @@
   height:70vh;
   background-color: white;
   border-radius: 1vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#count{
+  font-size: 60px;
 }
