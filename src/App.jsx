@@ -1,4 +1,4 @@
-import './App.css'
+import './assets/stylesheets/App.css';
 import GameContainer from "./components/GameContainer.jsx";
 
 export default function App() {

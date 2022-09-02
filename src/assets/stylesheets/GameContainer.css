@@ -1,0 +1,13 @@
+#game-container {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+  width: 451px;
+  height: 430px;
+  background: url(../images/bar.png) no-repeat no-repeat;
+  transform: scale(2);
+  image-rendering: pixelated;
+}
