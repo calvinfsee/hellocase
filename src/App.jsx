@@ -4,14 +4,15 @@ import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database
 import './assets/stylesheets/App.css';
 import GameContainer from "./components/GameContainer.jsx";
 import { auth, database } from './firebase.js';
+import { randomSpot } from './helpers.js';
 
 export default function App() {
-  const [playerData, setPlayerData] = useState(null);
+  //player id needs to be a ref to mutate
   const playerId = useRef(null);
   const playerRef = useRef(null);
-  const allPlayerRef = useRef(ref(database, `players`));
-  const [players, setPlayers] = useState({});
+
   const [loading, setLoading] = useState(true);
+  // const [players, setPlayers] = useState({});
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -22,8 +23,7 @@ export default function App() {
           id: uid,
           name: 'Calvin',
           direction: 'right',
-          x: 2,
-          y: 2
+          ...randomSpot()
         });
         onDisconnect(uref).remove();
         playerId.current = uid;
@@ -45,25 +45,25 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  useEffect(() => {
-    onValue(allPlayerRef.current, (snapshot) => {
-      //Fires whenever change occurs
-      const newPlayers = snapshot.val() || {};
-      setPlayers(newPlayers);
-    });
-    onChildAdded(allPlayerRef.current, (snapshot) => {
-      //Fires whenever a new node is added to the tree
-      const addedPlayer = snapshot.val();
-      setPlayers((prev) => {
-        const newPlayerList = {...prev, addedPlayer};
-        return newPlayerList;
-      });
-    });
-  }, []);
+  // useEffect(() => {
+  //   onValue(allPlayerRef.current, (snapshot) => {
+  //     //Fires whenever change occurs
+  //     const newPlayers = snapshot.val() || {};
+  //     setPlayers(newPlayers);
+  //   });
+  //   onChildAdded(allPlayerRef.current, (snapshot) => {
+  //     //Fires whenever a new node is added to the tree
+  //     const addedPlayer = snapshot.val();
+  //     setPlayers((prev) => {
+  //       const newPlayerList = {...prev, addedPlayer};
+  //       return newPlayerList;
+  //     });
+  //   });
+  // }, []);
 
   return (
     <div className="App">
-      <GameContainer players={players} />
+      <GameContainer playerId={playerId} loading={loading} />
     </div>
   )
 }
