@@ -8,14 +8,12 @@ export default function useArrowKeys (playerId, playersRef) {
   const upSafe = useRef(true);
   const downSafe = useRef(true);
 
-  function handleArrowPress (xChange = 0, yChange = 0) {
+  function handleArrowPress (xChange = 0, yChange = 0, dir = 0) {
     const players = playersRef.current;
     const id = playerId.current;
-    console.log(players);
-    console.log(id);
     const newX = players[id].x + xChange;
     const newY = players[id].y + yChange;
-    const newPlayerData = { ...players[id], x: newX, y: newY };
+    const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
     set(ref(database, `players/${id}`), newPlayerData);
     console.log('my player: ', newX, ' ', newY);
 
@@ -31,25 +29,25 @@ export default function useArrowKeys (playerId, playersRef) {
     switch (event.code) {
       case "ArrowLeft":
         if (leftSafe.current) {
-          handleArrowPress(-1, 0);
+          handleArrowPress(-1, 0, 1);
           leftSafe.current = false;
         }
         break;
       case "ArrowRight":
         if (rightSafe.current) {
-          handleArrowPress(1, 0);
+          handleArrowPress(1, 0, 2);
           rightSafe.current = false;
         }
         break;
       case "ArrowUp":
         if (upSafe.current) {
-          handleArrowPress(0, -1);
+          handleArrowPress(0, -1, 3);
           upSafe.current = false
         }
         break;
       case "ArrowDown":
         if (downSafe.current) {
-          handleArrowPress(0, 1);
+          handleArrowPress(0, 1, 0);
           downSafe.current = false;
         }
         break;

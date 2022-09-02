@@ -22,7 +22,7 @@ export default function App() {
         set(uref, {
           id: uid,
           name: 'Calvin',
-          direction: 'right',
+          direction: 0,
           ...randomSpot()
         });
         onDisconnect(uref).remove();

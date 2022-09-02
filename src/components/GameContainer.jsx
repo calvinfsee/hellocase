@@ -35,7 +35,7 @@ export default function GameContainer ({ playerId, loading }) {
     const playerIds = Object.keys(players);
     return playerIds.map((id) => {
       const {name, direction, x, y} = players[id];
-      const coor = `translate3d(${33 * x - 1}px, ${33 * y - 2}px, 0)`;
+      const coor = `translate3d(${32 * x - 1}px, ${32 * y - 2}px, 0)`;
 
       return (<Player key={id + coor} name={name} dir={direction} coor={coor} />);
     });

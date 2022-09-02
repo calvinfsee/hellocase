@@ -6,3 +6,4 @@ Do not allow characters to walk through each other
 Implement character select screen
 Render keyboard on bottom of screen
 Render chat log and maybe chat bubbles
+Animate sprite movement
