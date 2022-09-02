@@ -7,30 +7,30 @@ import { auth, database } from './firebase.js';
 
 export default function App() {
   const [playerData, setPlayerData] = useState(null);
-
-  const [allPlayerRef, setAllPlayerRef] = useState(ref(database, `players`));
+  const playerId = useRef(null);
+  const playerRef = useRef(null);
+  const allPlayerRef = useRef(ref(database, `players`));
   const [players, setPlayers] = useState({});
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const playerId = user.uid;
-        const playerRef = ref(database, `players/${playerId}`);
-        set(playerRef, {
-          id: playerId,
+        const uid = user.uid;
+        const uref = ref(database, `players/${uid}`);
+        set(uref, {
+          id: uid,
           name: 'Calvin',
           direction: 'right',
           x: 2,
           y: 2
         });
-        onDisconnect(playerRef).remove();
-        setPlayerData({
-          id: playerId,
-          ref: playerRef
-        });
+        onDisconnect(uref).remove();
+        playerId.current = uid;
+        playerRef.current = uref;
       } else {
-        setPlayerData(null);
+        playerId.current = null;
+        playerRef.current = null;
       }
     });
 
@@ -46,12 +46,12 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    onValue(allPlayerRef, (snapshot) => {
+    onValue(allPlayerRef.current, (snapshot) => {
       //Fires whenever change occurs
       const newPlayers = snapshot.val() || {};
       setPlayers(newPlayers);
     });
-    onChildAdded(allPlayerRef, (snapshot) => {
+    onChildAdded(allPlayerRef.current, (snapshot) => {
       //Fires whenever a new node is added to the tree
       const addedPlayer = snapshot.val();
       setPlayers((prev) => {
