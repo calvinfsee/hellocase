@@ -1,0 +1,8 @@
+Implement sprite direction
+Implement name authentication
+Implement chat feature
+Map out all solid spaces on the board
+Do not allow characters to walk through each other
+Implement character select screen
+Render keyboard on bottom of screen
+Render chat log and maybe chat bubbles
