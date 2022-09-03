@@ -25,7 +25,7 @@ export default function Player ({ name, coor, dir}) {
       <div className="Character_name-container">
         <span className="Character_name">{name}</span>
       </div>
-      {/* <div className="Character_you-arrow"></div> */}
+      <div className="Character_you-arrow"></div>
     </div>
   );
 }

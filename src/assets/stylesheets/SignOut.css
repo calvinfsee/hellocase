@@ -1,0 +1,10 @@
+#sign-out {
+  position: absolute;
+  top: 2vh;
+  right: 2vh;
+  height: 6vh;
+  font-size: 4vh;
+  background-color: darkred;
+  border: 2px solid black;
+  border-radius: 5px;
+}

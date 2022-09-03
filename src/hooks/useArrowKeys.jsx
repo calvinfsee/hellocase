@@ -16,13 +16,6 @@ export default function useArrowKeys (playerId, playersRef) {
     const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
     set(ref(database, `players/${id}`), newPlayerData);
     console.log('my player: ', newX, ' ', newY);
-
-      // setPlayers((prev) => {
-      //   const myPlayer = {...prev[id], x: newX, y: newY};
-      //   console.log('myPlayer: ', newX, ' ', newY);
-      //   set(ref(database, `players/${id}`), myPlayer);
-      //   return {...prev, [id]: myPlayer};
-      // });
   }
 
   function keyDown (event) {

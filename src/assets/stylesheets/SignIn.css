@@ -1,6 +1,17 @@
+#sign-in-container {
+  height: 50vh;
+  width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 2px;
+  border: 2px solid black;
+}
 #sign-in {
   height: 6vh;
-  background-color: white;
+  background-color: green;
   font-size: 4vh;
   border: 2px solid black;
   border-radius: 5px;
