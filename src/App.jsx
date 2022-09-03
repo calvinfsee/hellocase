@@ -57,7 +57,7 @@ export default function App() {
 
   return (
     <div className="App">
-      {user ? <SignOut /> : null}
+      {user ? <SignOut setLoading={setLoading} /> : null}
       {user ? <h1>Signed In</h1> : <SignIn />}
       {loading ? null : <GameContainer playerId={playerId} playerRef={playerRef} /> }
     </div>
