@@ -3,6 +3,7 @@ import { signInAnonymously, onAuthStateChanged } from 'firebase/auth';
 import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database';
 import './assets/stylesheets/App.css';
 import GameContainer from "./components/GameContainer.jsx";
+import SignIn from './components/SignIn.jsx';
 import { auth, database } from './firebase.js';
 import { randomSpot } from './helpers.js';
 
@@ -12,7 +13,6 @@ export default function App() {
   const playerRef = useRef(null);
 
   const [loading, setLoading] = useState(true);
-  // const [players, setPlayers] = useState({});
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -45,25 +45,10 @@ export default function App() {
     return () => unsubscribe();
   }, []);
 
-  // useEffect(() => {
-  //   onValue(allPlayerRef.current, (snapshot) => {
-  //     //Fires whenever change occurs
-  //     const newPlayers = snapshot.val() || {};
-  //     setPlayers(newPlayers);
-  //   });
-  //   onChildAdded(allPlayerRef.current, (snapshot) => {
-  //     //Fires whenever a new node is added to the tree
-  //     const addedPlayer = snapshot.val();
-  //     setPlayers((prev) => {
-  //       const newPlayerList = {...prev, addedPlayer};
-  //       return newPlayerList;
-  //     });
-  //   });
-  // }, []);
-
   return (
     <div className="App">
-      <GameContainer playerId={playerId} loading={loading} />
+      {/* <SignIn /> */}
+      {/* <GameContainer playerId={playerId} loading={loading} /> */}
     </div>
   )
 }
