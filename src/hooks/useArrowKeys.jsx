@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database';
 import { auth, database } from '../firebase.js';
+import { isSolid } from '../helpers.js';
 
 export default function useArrowKeys (playerId, playersRef) {
   const leftSafe = useRef(true);
@@ -13,9 +14,13 @@ export default function useArrowKeys (playerId, playersRef) {
     const id = playerId.current;
     const newX = players[id].x + xChange;
     const newY = players[id].y + yChange;
-    const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
-    set(ref(database, `players/${id}`), newPlayerData);
-    console.log('my player: ', newX, ' ', newY);
+    if (!isSolid(newX, newY)) {
+      const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
+      set(ref(database, `players/${id}`), newPlayerData);
+      console.log('my player (X, Y): ', newX, ' ', newY);
+    } else {
+      console.log('invalid (X, Y)', newX, ' ', newY);
+    }
   }
 
   function keyDown (event) {

@@ -42,7 +42,8 @@ export default function GameContainer ({ playerId, playerRef }) {
             id: uid,
             name: 'Calvin',
             direction: 0,
-            ...randomSpot()
+            x: -5,
+            y: -4
           });
         }
       })

@@ -25,36 +25,6 @@ export default function App() {
     }
   }, [user]);
 
-  // useEffect(() => {
-  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
-  //     if (user) {
-  //       const uid = user.uid;
-  //       const uref = ref(database, `players/${uid}`);
-  //       set(uref, {
-  //         id: uid,
-  //         name: 'Calvin',
-  //         direction: 0,
-  //         ...randomSpot()
-  //       });
-  //       playerId.current = uid;
-  //       playerRef.current = uref;
-  //     } else {
-  //       playerId.current = null;
-  //       playerRef.current = null;
-  //     }
-  //   });
-
-  //   signInAnonymously(auth)
-  //     .then(() => {
-  //       console.log('signed in!');
-  //     })
-  //     .catch((error) => {
-  //       const errorCode = error.code;
-  //       const errorMessage = error.message;
-  //     });
-  //   return () => unsubscribe();
-  // }, []);
-
   return (
     <div className="App">
       {user ? <SignOut setLoading={setLoading} /> : null}
