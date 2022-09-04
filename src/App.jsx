@@ -6,7 +6,7 @@ import { auth, database } from './firebase.js';
 import { randomSpot } from './helpers.js';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import GameContainer from "./components/GameContainer.jsx";
+import GameContainer from './components/GameContainer.jsx';
 import SignIn from './components/SignIn.jsx';
 import SignOut from './components/SignOut.jsx';
 
@@ -26,7 +26,7 @@ export default function App() {
   }, [user]);
 
   return (
-    <div className="App">
+    <div className='App'>
       {user ? <SignOut setLoading={setLoading} /> : null}
       {user ? <h1>Signed In</h1> : <SignIn />}
       {loading ? null : <GameContainer playerId={playerId} playerRef={playerRef} /> }

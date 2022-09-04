@@ -27,25 +27,25 @@ export default function useArrowKeys (playerId, playersRef) {
 
   function keyDown (event) {
     switch (event.code) {
-      case "ArrowLeft":
+      case 'ArrowLeft':
         if (leftSafe.current) {
           handleArrowPress(-1, 0, 1);
           leftSafe.current = false;
         }
         break;
-      case "ArrowRight":
+      case 'ArrowRight':
         if (rightSafe.current) {
           handleArrowPress(1, 0, 2);
           rightSafe.current = false;
         }
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         if (upSafe.current) {
           handleArrowPress(0, -1, 3);
           upSafe.current = false
         }
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         if (downSafe.current) {
           handleArrowPress(0, 1, 0);
           downSafe.current = false;
@@ -57,16 +57,16 @@ export default function useArrowKeys (playerId, playersRef) {
   }
   function keyUp (event) {
     switch (event.code) {
-      case "ArrowLeft":
+      case 'ArrowLeft':
         leftSafe.current = true;
         break;
-      case "ArrowRight":
+      case 'ArrowRight':
         rightSafe.current = true;
         break;
-      case "ArrowUp":
+      case 'ArrowUp':
         upSafe.current = true;
         break;
-      case "ArrowDown":
+      case 'ArrowDown':
         downSafe.current = true;
         break;
       default:
@@ -75,12 +75,12 @@ export default function useArrowKeys (playerId, playersRef) {
   }
 
   useEffect(() => {
-    window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
+    window.addEventListener('keydown', keyDown);
+    window.addEventListener('keyup', keyUp);
 
     return () => {
-      window.removeEventListener("keydown", keyDown);
-      window.removeEventListener("keyup", keyUp);
+      window.removeEventListener('keydown', keyDown);
+      window.removeEventListener('keyup', keyUp);
     }
   }, []);
 }

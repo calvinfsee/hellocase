@@ -1,4 +1,4 @@
-import "../assets/stylesheets/GameContainer.css";
+import '../assets/stylesheets/GameContainer.css';
 import { useState, useEffect, useRef } from 'react';
 import useArrowKeys from '../hooks/useArrowKeys.jsx';
 import Player from './Player.jsx';
@@ -40,13 +40,6 @@ export default function GameContainer ({ playerId, playerRef }) {
       .then((snapshot) => {
         if (!snapshot.exists()) {
           setHasChar(false);
-          // set(uref, {
-          //   id: uid,
-          //   name: 'Calvin',
-          //   direction: 0,
-          //   x: -5,
-          //   y: -4
-          // });
         }
       })
       .catch((error) => console.error(error));
@@ -65,7 +58,7 @@ export default function GameContainer ({ playerId, playerRef }) {
   }
 
   return (
-    <div id="game-container">
+    <div id='game-container'>
       {hasChar ? null : <CreateCharacter setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
       {renderPlayers()}
     </div>

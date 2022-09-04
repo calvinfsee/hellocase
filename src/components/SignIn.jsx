@@ -9,8 +9,8 @@ export default function SignIn () {
   }
 
   return (
-    <div id="sign-in-container">
-      <button id="sign-in" onClick={signInWithGoogle}>Sign In</button>
+    <div id='sign-in-container'>
+      <button id='sign-in' onClick={signInWithGoogle}>Sign In</button>
     </div>
   );
 }

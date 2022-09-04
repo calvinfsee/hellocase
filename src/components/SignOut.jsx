@@ -10,7 +10,7 @@ export default function SignOut ({ setLoading }) {
   }, [auth]);
 
   return (
-    <button id="sign-out" onClick={handleSignOut}>
+    <button id='sign-out' onClick={handleSignOut}>
       Sign Out
     </button>
   )

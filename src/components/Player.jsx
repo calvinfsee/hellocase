@@ -21,11 +21,11 @@ export default function Player ({ name, coor, dir}) {
 
   return (
     <div className='Character grid-cell' style={coordinates}>
-      <div className="Character_sprite grid-cell" style={dirStyle}></div>
-      <div className="Character_name-container">
-        <span className="Character_name">{name}</span>
+      <div className='Character_sprite grid-cell' style={dirStyle}></div>
+      <div className='Character_name-container'>
+        <span className='Character_name'>{name}</span>
       </div>
-      <div className="Character_you-arrow"></div>
+      <div className='Character_you-arrow'></div>
     </div>
   );
 }
