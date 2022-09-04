@@ -21,7 +21,6 @@ export default function App() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(auth.currentUser.displayName);
         const uid = user.uid;
         const uref = ref(database, `players/${uid}`);
         onDisconnect(uref).update({ online: false });

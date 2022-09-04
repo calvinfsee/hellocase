@@ -5,13 +5,13 @@ import { collection, orderBy, limit, query } from 'firebase/firestore';
 
 export const ChatContext = createContext({});
 
-class Message {
-  constructor(id, createdAt, text, uid, username) {
+export class Message {
+  constructor(id, createdAt, text, uid, displayName) {
     this.id = id;
     this.createdAt = createdAt;
     this.text = text;
     this.uid = uid;
-    this.username = username;
+    this.displayName = displayName;
   }
 }
 
@@ -21,12 +21,12 @@ const messageConverter = {
       createdAt: message.createdAt,
       text: message.text,
       uid: message.uid,
-      username: message.username
+      displayName: message.displayName
     };
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    return new Message(snapshot.id, data.createdAt, data.text, data.uid, data.username);
+    return new Message(snapshot.id, data.createdAt, data.text, data.uid, data.displayName);
   }
 }
 
@@ -37,7 +37,7 @@ export default function ChatContextProvider ({ children }) {
   const [messages] = useCollectionData(messagesQuery);
 
   return (
-    <ChatContext.Provider value={{ messages }}>
+    <ChatContext.Provider value={{ messages, messagesRef }}>
       {children}
     </ChatContext.Provider>
   )
