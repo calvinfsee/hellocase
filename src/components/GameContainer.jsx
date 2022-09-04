@@ -31,11 +31,11 @@ export default function GameContainer ({ playerId, playerRef }) {
     });
   }, []);
 
+  //Check if the player has a character in the database
   useEffect(() => {
     const uid = playerId.current;
     const uref = playerRef.current;
     const dbRef = ref(database);
-
     get(child(dbRef, `players/${uid}`))
       .then((snapshot) => {
         if (!snapshot.exists()) {
