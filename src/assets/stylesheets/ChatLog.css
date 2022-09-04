@@ -1,0 +1,23 @@
+#chat-log-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  border-radius: 2px;
+  border: 2px solid black;
+  position: absolute;
+  width: 20vw;
+  right: 1vw;
+}
+.chat-log-header {
+  font-size: 25px;
+  text-align: center;
+}
+#chat-log {
+  display: flex;
+  height: 50vh;
+  width: 100%;
+  margin: 1vh;
+  overflow-y: scroll;
+}
