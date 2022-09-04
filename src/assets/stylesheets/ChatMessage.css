@@ -1,0 +1,14 @@
+.chat-message {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-wrap: break-word;
+}
+.chat-message-user {
+  font-size: 15px;
+  font-weight: bold;
+}
+.chat-message-text {
+  font-size: 14px;
+}

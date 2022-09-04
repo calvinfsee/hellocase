@@ -1,6 +1,8 @@
 import '../assets/stylesheets/CreateCharacter.css';
 import { useState, useEffect } from 'react';
 import { ref, set } from 'firebase/database'
+import { auth } from '../firebase.js';
+import { updateProfile } from 'firebase/auth';
 import { sanitized } from '../helpers.js';
 
 export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
@@ -40,6 +42,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
         y: -4,
       };
       set(uref, newCharacter);
+      updateProfile(auth.currentUser, { displayName: name });
       setHasChar(true);
     } else {
       console.log('invalid');

@@ -59,6 +59,6 @@ export function isSolid (x, y) {
 }
 
 export function sanitized (str) {
-  const reg = /^[A-Za-z0-9_. ]*$/;
+  const reg = /^[A-Za-z0-9_.'" ]*$/;
   return reg.test(str);
 }
