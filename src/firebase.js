@@ -2,8 +2,8 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getDatabase, update, ref } from 'firebase/database';
+import { getFirestore } from 'firebase/firestore';
 import { firebaseConfig } from './config.js';
-// TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
@@ -11,9 +11,6 @@ import { firebaseConfig } from './config.js';
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const database = getDatabase();
+export const database = getDatabase(app);
+export const firestore = getFirestore(app);
 
-// export function setUserOffline (uid) {
-//   const dbRef = ref(database, `players/${uid}`);
-//   update(dbRef, { online: false });
-// }

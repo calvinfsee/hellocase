@@ -1,4 +1,6 @@
 import '../assets/stylesheets/ChatLog.css';
+import { useContext } from 'react';
+import { ChatContext } from './ChatContextProvider.jsx';
 
 export default function ChatLog () {
   return (
