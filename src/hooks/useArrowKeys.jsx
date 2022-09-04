@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database';
+import { ref, set, update } from 'firebase/database';
 import { auth, database } from '../firebase.js';
 import { isSolid } from '../helpers.js';
 
@@ -23,12 +23,11 @@ export default function useArrowKeys (playerId, playersRef, setHasChar) {
     const newX = x + xChange;
     const newY = y + yChange;
     if (!isSolid(newX, newY)) {
-      const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
-      set(ref(database, `players/${id}`), newPlayerData);
+      const newPlayerData = { x: newX, y: newY, direction: dir };
+      update(ref(database, `players/${id}`), newPlayerData);
     } else if (direction !== dir) {
-      const newDirData = {...players[id], direction: dir};
-      set(ref(database, `players/${id}`), newDirData);
-      console.log('invalid (X, Y)', newX, ' ', newY);
+      const newDirData = { direction: dir};
+      update(ref(database, `players/${id}`), newDirData);
     }
   }
 

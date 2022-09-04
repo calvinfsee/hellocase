@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import '../assets/stylesheets/Player.css';
 
-export default function Player ({ name, coor, dir}) {
+export default function Player ({ name, coor, direction }) {
   const coordinates = useMemo(() => {
     const styles = {
       transform: coor
@@ -12,10 +12,10 @@ export default function Player ({ name, coor, dir}) {
 
   const dirStyle = useMemo(() => {
     const styles = {
-      backgroundPositionY: `${dir * -48}px`
+      backgroundPositionY: `${direction * -48}px`
     }
     return styles;
-  }, [dir]);
+  }, [direction]);
 
 
 

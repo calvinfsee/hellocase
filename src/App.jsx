@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { signInAnonymously, onAuthStateChanged } from 'firebase/auth';
-import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database';
+import { ref, set, onDisconnect, onValue, onChildAdded, update } from 'firebase/database';
 import './assets/stylesheets/App.css';
 import { auth, database } from './firebase.js';
 import { randomSpot } from './helpers.js';
@@ -18,16 +18,27 @@ export default function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      playerId.current = user.uid;
-      playerRef.current = ref(database, `players/${user.uid}`);
-      setLoading(false);
-    }
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const uid = user.uid;
+        const uref = ref(database, `players/${uid}`);
+        onDisconnect(uref).update({ online: false });
+        update(uref, { online: true });
+        playerId.current = uid;
+        playerRef.current = uref;
+        setLoading(false);
+      } else {
+        playerId.current = null;
+        playerRef.current = null;
+        setLoading(true);
+      }
+    });
+    return () => unsubscribe();
   }, [user]);
 
   return (
     <div className='App'>
-      {user ? <SignOut setLoading={setLoading} /> : null}
+      {user ? <SignOut setLoading={setLoading} user={user} /> : null}
       {user ? <h1>Signed In</h1> : <SignIn />}
       {loading ? null : <GameContainer playerId={playerId} playerRef={playerRef} /> }
     </div>
