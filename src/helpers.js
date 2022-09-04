@@ -57,3 +57,8 @@ export function isSolid (x, y) {
   const coor = getCoordinateString(x, y);
   return mapData.blockedSpaces[coor];
 }
+
+export function sanitized (str) {
+  const reg = /^[A-Za-z0-9_. ]*$/;
+  return reg.test(str);
+}
