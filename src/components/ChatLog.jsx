@@ -1,5 +1,5 @@
 import '../assets/stylesheets/ChatLog.css';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef } from 'react';
 import { ChatContext } from './ChatContextProvider.jsx';
 import ChatMessage from './ChatMessage.jsx';
 import { sanitized } from '../helpers.js';
@@ -9,6 +9,7 @@ import { serverTimestamp, addDoc } from 'firebase/firestore';
 export default function ChatLog () {
   const { messages, messagesRef } = useContext(ChatContext);
   const [text, setText] = useState('');
+  const scrollRef = useRef(null);
 
   //! Research whether Sanitizing text is neccessary for chat log
   function handleOnChange (e) {
@@ -34,14 +35,18 @@ export default function ChatLog () {
         displayName
       });
       setText('');
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }
 
   return (
-    <div id='chat-log-container'>
+    <div id='chat-log-wrapper'>
       <h2 className='chat-log-header'>Chat Log</h2>
-      <div id='chat-log'>
-        {messages && messages.map(msg => <ChatMessage key={msg.id} {...msg} />)}
+      <div id='chat-log-container'>
+        <div id='chat-log'>
+          {messages && messages.map(msg => <ChatMessage key={msg.id} {...msg} />)}
+          <span ref={scrollRef} />
+        </div>
       </div>
       <input
         type='text'
