@@ -25,7 +25,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
     });
   }
 
-  function handleSubmit () {
+  async function handleSubmit () {
     const uid = playerId.current;
     const uref = playerRef.current;
     const { name, p1, p2, sprite} = char;
@@ -41,8 +41,8 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
         x: -5,
         y: -4,
       };
-      set(uref, newCharacter);
-      updateProfile(auth.currentUser, { displayName: name });
+      await set(uref, newCharacter);
+      await updateProfile(auth.currentUser, { displayName: name });
       setHasChar(true);
     } else {
       console.log('invalid');

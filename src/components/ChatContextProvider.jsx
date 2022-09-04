@@ -31,7 +31,7 @@ const messageConverter = {
 }
 
 export default function ChatContextProvider ({ children }) {
-
+  //TODO: Modify Query so that it updates with more than 25 messages
   const messagesRef = collection(firestore, 'messages').withConverter(messageConverter);
   const messagesQuery = query(messagesRef, orderBy('createdAt'), limit(25));
   const [messages] = useCollectionData(messagesQuery);

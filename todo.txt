@@ -1,9 +1,22 @@
-Implement sprite direction
-Implement name authentication
-Implement chat feature
-Map out all solid spaces on the board
-Do not allow characters to walk through each other
-Implement character select screen
-Render keyboard on bottom of screen
-Render chat log and maybe chat bubbles
-Animate sprite movement
+HIGH PRIORITY
+  Modify firestore query so that it updates with more than 25 messages
+  Implement sprite selector
+  Implement Chat bubbles
+  Animate sprite movement
+  Apply y as the z-index of player sprites
+  Research text sanitization
+  Make things flash red when error
+
+EXTRA
+  Do not allow characters to walk through each other (?)
+  Modify solid objects like tables so that the player sprites show up behind them
+  Style chatlog
+  Style the create a character modal
+  Style sign in and sign out buttons
+  Style background
+  Pick a font
+  Add emotes?
+  Allow players to modify their sprite and pronouns
+  Private messaging (?)
+  Add github link
+  Deploy Project
