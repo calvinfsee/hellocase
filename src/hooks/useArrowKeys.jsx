@@ -3,7 +3,7 @@ import { ref, set, onDisconnect, onValue, onChildAdded } from 'firebase/database
 import { auth, database } from '../firebase.js';
 import { isSolid } from '../helpers.js';
 
-export default function useArrowKeys (playerId, playersRef) {
+export default function useArrowKeys (playerId, playersRef, setHasChar) {
   const leftSafe = useRef(true);
   const rightSafe = useRef(true);
   const upSafe = useRef(true);
@@ -11,8 +11,15 @@ export default function useArrowKeys (playerId, playersRef) {
 
   function handleArrowPress (xChange = 0, yChange = 0, dir = 0) {
     const id = playerId.current;
-    const { x, y, direction } = playersRef.current[id];
     const players = playersRef.current;
+
+    if (!id || !players[id]) {
+      setHasChar(false);
+      return;
+    }
+
+    const { x, y, direction } = players[id];
+
     const newX = x + xChange;
     const newY = y + yChange;
     if (!isSolid(newX, newY)) {

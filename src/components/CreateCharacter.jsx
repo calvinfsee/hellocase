@@ -17,9 +17,8 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
       console.error('Bad input!');
       return;
     }
-
     setChar((prev) => {
-      const newState = { ...prev, [e.target.id]: newText.toUpperCase() };
+      const newState = { ...prev, [e.target.id]: newText };
       return newState;
     });
   }

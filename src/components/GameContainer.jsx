@@ -45,7 +45,7 @@ export default function GameContainer ({ playerId, playerRef }) {
       .catch((error) => console.error(error));
   }, []);
 
-  useArrowKeys(playerId, playersRef);
+  useArrowKeys(playerId, playersRef, setHasChar);
 
   function renderPlayers () {
     const playerIds = Object.keys(players);
