@@ -45,7 +45,6 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
   return (
     <div id='create-char'>
       <h2 className='modal-header'>CREATE YOUR CHARACTER</h2>
-      {/* <div id='sprite-preview'></div> */}
       <div className='modal-fields-container'>
         <div className='modal-field'>
           <h3 className='modal-form-label'>NAME:</h3>
