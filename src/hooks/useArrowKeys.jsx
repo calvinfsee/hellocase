@@ -10,15 +10,17 @@ export default function useArrowKeys (playerId, playersRef) {
   const downSafe = useRef(true);
 
   function handleArrowPress (xChange = 0, yChange = 0, dir = 0) {
-    const players = playersRef.current;
     const id = playerId.current;
-    const newX = players[id].x + xChange;
-    const newY = players[id].y + yChange;
+    const { x, y, direction } = playersRef.current[id];
+    const players = playersRef.current;
+    const newX = x + xChange;
+    const newY = y + yChange;
     if (!isSolid(newX, newY)) {
       const newPlayerData = { ...players[id], x: newX, y: newY, direction: dir };
       set(ref(database, `players/${id}`), newPlayerData);
-      console.log('my player (X, Y): ', newX, ' ', newY);
-    } else {
+    } else if (direction !== dir) {
+      const newDirData = {...players[id], direction: dir};
+      set(ref(database, `players/${id}`), newDirData);
       console.log('invalid (X, Y)', newX, ' ', newY);
     }
   }

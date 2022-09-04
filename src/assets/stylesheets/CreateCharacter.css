@@ -1,0 +1,44 @@
+#create-char {
+  position: absolute;
+  height: 35vh;
+  width: 35vh;
+  background-color: gray;
+  border: 2px solid black;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  z-index: 5;
+}
+.modal-header {
+  font-size: 20px;
+  text-align: center;
+  justify-self: flex-start;
+  align-self: center;
+}
+.modal-form-label {
+  font-size: 15px;
+  text-align: left;
+}
+.modal-form-input {
+  font-size: 15px;
+  text-align: left;
+}
+.modal-field {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1vh;
+}
+.done {
+  font-size: 20px;
+  height: 3vh;
+  border: 2px solid black;
+  background-color: green;
+  border-radius: 2px;
+  text-align: center;
+}
+.done:hover {
+  background-color: darkgreen;
+}

@@ -5,12 +5,13 @@ import Player from './Player.jsx';
 import { ref, set, onDisconnect, onValue, onChildAdded, get, child } from 'firebase/database';
 import { auth, database } from '../firebase.js';
 import { randomSpot } from '../helpers.js';
+import CreateCharacter from './CreateCharacter.jsx';
 
 export default function GameContainer ({ playerId, playerRef }) {
   const [players, setPlayers] = useState({});
   const allPlayerRef = useRef(ref(database, `players`));
   const playersRef = useRef(players);
-  const [newPlayer, setNewPlayer] = useState(true);
+  const [hasChar, setHasChar] = useState(true);
 
   useEffect(() => {
     onValue(allPlayerRef.current, (snapshot) => {
@@ -38,17 +39,19 @@ export default function GameContainer ({ playerId, playerRef }) {
     get(child(dbRef, `players/${uid}`))
       .then((snapshot) => {
         if (!snapshot.exists()) {
-          set(uref, {
-            id: uid,
-            name: 'Calvin',
-            direction: 0,
-            x: -5,
-            y: -4
-          });
+          setHasChar(false);
+          // set(uref, {
+          //   id: uid,
+          //   name: 'Calvin',
+          //   direction: 0,
+          //   x: -5,
+          //   y: -4
+          // });
         }
       })
       .catch((error) => console.error(error));
   }, []);
+
   useArrowKeys(playerId, playersRef);
 
   function renderPlayers () {
@@ -63,6 +66,7 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   return (
     <div id="game-container">
+      {hasChar ? null : <CreateCharacter setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
       {renderPlayers()}
     </div>
   )

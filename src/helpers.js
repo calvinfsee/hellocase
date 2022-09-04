@@ -55,6 +55,5 @@ export function isSolid (x, y) {
     return true;
   }
   const coor = getCoordinateString(x, y);
-  console.log(coor);
   return mapData.blockedSpaces[coor];
 }
