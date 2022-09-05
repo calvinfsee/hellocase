@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext, useState } from 'react';
 import { firestore } from '../firebase.js';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection, orderBy, limit, query } from 'firebase/firestore';
+import { collection, orderBy, limit, query, where } from 'firebase/firestore';
 
 export const ChatContext = createContext({});
 
@@ -32,8 +32,9 @@ const messageConverter = {
 
 export default function ChatContextProvider ({ children }) {
   //TODO: Modify Query so that it updates with more than 25 messages
+  const [loggedInAt, setLoggedInAt] = useState(new Date());
   const messagesRef = collection(firestore, 'messages').withConverter(messageConverter);
-  const messagesQuery = query(messagesRef, orderBy('createdAt'), limit(25));
+  const messagesQuery = query(messagesRef, where('createdAt', '>=', loggedInAt), orderBy('createdAt'));
   const [messages] = useCollectionData(messagesQuery);
 
   return (
