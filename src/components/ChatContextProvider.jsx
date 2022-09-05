@@ -31,7 +31,7 @@ const messageConverter = {
 }
 
 export default function ChatContextProvider ({ children }) {
-  //TODO: Modify Query so that it updates with more than 25 messages
+  //! Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
   const [loggedInAt, setLoggedInAt] = useState(new Date());
   const messagesRef = collection(firestore, 'messages').withConverter(messageConverter);
   const messagesQuery = query(messagesRef, where('createdAt', '>=', loggedInAt), orderBy('createdAt'));

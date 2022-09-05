@@ -1,5 +1,5 @@
 HIGH PRIORITY
-  Modify firestore query so that it updates with more than 25 messages
+  Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
   Implement sprite selector
   Implement Chat bubbles
   Animate sprite movement
