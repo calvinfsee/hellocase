@@ -24,7 +24,7 @@ export default function GameContainer ({ playerId, playerRef }) {
       //Fires whenever a new node is added to the tree
       const addedPlayer = snapshot.val();
       setPlayers((prev) => {
-        const newPlayerList = {...prev, [addedPlayer.id]: addedPlayer };
+        const newPlayerList = {...prev, [addedPlayer.uid]: addedPlayer };
         playersRef.current = newPlayerList;
         return newPlayerList;
       });
@@ -40,7 +40,7 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   //Check if the player has a character in the database
   useEffect(() => {
-    const uid = playerId.current;
+    const { uid } = auth.currentUser;
     const uref = playerRef.current;
     const dbRef = ref(database);
 
@@ -49,11 +49,16 @@ export default function GameContainer ({ playerId, playerRef }) {
         if (snapshot.exists() && snapshot.val().name) {
           // update(uref, { online: true });
         } else {
+          console.log('GameContainer setHasChar to false');
           setHasChar(false);
         }
       })
       .catch((error) => console.error(error));
   }, []);
+
+  useEffect(() => {
+    playersRef.current = players;
+  }, [hasChar]);
 
   useArrowKeys(playerId, playersRef, setHasChar);
 
@@ -67,7 +72,7 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   return (
     <div id='game-container'>
-      {hasChar ? null : <CreateCharacter setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
+      {hasChar ? null : <CreateCharacter players={players} setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
       {renderPlayers()}
     </div>
   )
