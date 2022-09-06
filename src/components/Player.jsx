@@ -1,7 +1,8 @@
 import { useMemo, useEffect, useRef, useState } from 'react';
 import '../assets/stylesheets/Player.css';
+import sailormoon from '../assets/images/sailormoon.png';
 
-export default function Player ({ name, direction, x, y, uid }) {
+export default function Player ({ name, direction, x, y, uid, sprite }) {
   const lastX = useRef(x);
   const lastY = useRef(y);
   const dirRef = useRef({
@@ -10,10 +11,11 @@ export default function Player ({ name, direction, x, y, uid }) {
   const animationRef = useRef('Character_sprite grid-cell');
   const [spriteClass, setSpriteClass] = useState('Character_sprite grid-cell');
 
-  const dirStyle = useMemo(() => {
+  const spriteStyle = useMemo(() => {
     const backgroundPositionY = `${direction * -48}px`;
     const backgroundPositionX = '0px';
     const styles = {
+      background: `url(src/assets/images/${sprite}.png)`,
       backgroundPositionY
     }
 
@@ -21,7 +23,6 @@ export default function Player ({ name, direction, x, y, uid }) {
   }, [direction]);
   useEffect(() => {
     if (lastX.current !== x || lastY.current !== y) {
-      console.log('animate!');
       lastX.current = x;
       lastY.current = y;
       setSpriteClass('Character_sprite grid-cell moving');
@@ -32,9 +33,11 @@ export default function Player ({ name, direction, x, y, uid }) {
   }
 
   const coordinates = useMemo(() => {
-    const coor = `translate3d(${32 * x - 1}px, ${32 * y - 2}px, 0)`;
+    const transform = `translate3d(${32 * x - 1}px, ${32 * y - 2}px, 0)`;
+    const zIndex = y;
     const styles = {
-      transform: coor
+      transform,
+      zIndex
     }
     return styles;
   }, [spriteClass]);
@@ -46,7 +49,7 @@ export default function Player ({ name, direction, x, y, uid }) {
 
   return (
     <div id={uid} className='Character grid-cell' style={coordinates ? coordinates : defaultCoor}>
-      <div className={spriteClass} style={dirStyle} onAnimationEnd={onAnimationEnd}></div>
+      <div className={spriteClass} style={spriteStyle} onAnimationEnd={onAnimationEnd}></div>
       <div className='Character_name-container'>
         <span className='Character_name'>{name}</span>
       </div>

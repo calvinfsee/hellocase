@@ -15,6 +15,7 @@ export default function useArrowKeys (playerId, playersRef, setHasChar) {
 
     if (!uid || !players[uid]) {
       console.log('handleArrowPress: ', uid);
+      console.log(players);
       setHasChar(false);
       return;
     }

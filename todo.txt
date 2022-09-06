@@ -2,13 +2,10 @@ HIGH PRIORITY
   Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
   Implement sprite selector
   Implement Chat bubbles
-  Animate sprite movement
-  Apply y as the z-index of player sprites
   Research text sanitization
   Make things flash red when error
 
 EXTRA
-  Do not allow characters to walk through each other (?)
   Modify solid objects like tables so that the player sprites show up behind them
   Style chatlog
   Style the create a character modal

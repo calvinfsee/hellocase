@@ -5,7 +5,7 @@ import { auth } from '../firebase.js';
 import { updateProfile } from 'firebase/auth';
 import { sanitized } from '../helpers.js';
 
-export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
+export default function CreateCharacter ({ setHasChar, playerId, playerRef, players }) {
   const [char, setChar] = useState({
     name: '',
     p1: '',
@@ -48,6 +48,14 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
       console.log('invalid');
     }
   }
+
+  useEffect(() => {
+    const { uid, displayName } = auth.currentUser;
+    const player = players[uid];
+    if (displayName && player && player.name) {
+      setHasChar(true);
+    }
+  }, [players]);
 
   return (
     <div id='create-char'>
