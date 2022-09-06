@@ -23,7 +23,7 @@
 }
 
 .moving {
-  animation: walk 0.4s steps(4) 1;
+  animation: walk 0.35s steps(4) 1;
 }
 
 .Character_name-container {

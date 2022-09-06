@@ -10,6 +10,7 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
   });
   const animationRef = useRef('Character_sprite grid-cell');
   const [spriteClass, setSpriteClass] = useState('Character_sprite grid-cell');
+  // const [moving, setMoving] = useState(false)
 
   const spriteStyle = useMemo(() => {
     const backgroundPositionY = `${direction * -48}px`;
@@ -40,7 +41,7 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
       zIndex
     }
     return styles;
-  }, [spriteClass]);
+  }, [x, y]);
   //Player sprite is 32 x 48
 
   const defaultCoor = {

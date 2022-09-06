@@ -6,6 +6,7 @@ HIGH PRIORITY
   Make things flash red when error
 
 EXTRA
+  Make walk animation smoother or restrict players from moving too quickly
   Modify solid objects like tables so that the player sprites show up behind them
   Style chatlog
   Style the create a character modal
