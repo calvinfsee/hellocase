@@ -61,44 +61,46 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
   }, [players]);
 
   return (
-    <div id='create-char'>
-      <h2 className='modal-header'>CREATE YOUR CHARACTER</h2>
-      <SpriteSelector pos={pos} setPos={setPos} />
-      <div className='modal-fields-container'>
-        <div className='modal-field'>
-          <h3 className='modal-form-label'>NAME:</h3>
-          <input
-            type='text'
-            className='modal-form-input'
-            id='name' value={char.name}
-            placeholder={'My name...'}
-            onChange={handleTextChange}
-          />
-        </div>
-        <div className='modal-field'>
-          <h3 className='modal-form-label'>PRONOUNS:</h3>
-          <div className='modal-pronouns-container'>
-            <input
-              type='text'
-              className='modal-pronouns'
-              id='p1' value={char.p1}
-              placeholder={'They'}
-              onChange={handleTextChange}
-            />
-            <h4 className='modal-form-label'>/</h4>
-            <input
-              type='text'
-              className='modal-pronouns'
-              id='p2' value={char.p2}
-              placeholder={'Them'}
-              onChange={handleTextChange}
-            />
+    <div id='create-char-wrapper'>
+      <div id='create-char'>
+        {/* <h2 className='modal-header'>CREATE YOUR CHARACTER</h2> */}
+        <input
+                type='text'
+                className='name-input'
+                id='name' value={char.name}
+                placeholder={'NAME'}
+                onChange={handleTextChange}
+              />
+        {/* <div className='name-sprite-container'> */}
+
+          <SpriteSelector pos={pos} setPos={setPos} />
+        {/* </div> */}
+        {/* <div className='modal-fields-container'>
+          <div className='modal-field'>
+            <h3 className='modal-form-label'>PRONOUNS:</h3>
+            <div className='modal-pronouns-container'>
+              <input
+                type='text'
+                className='modal-pronouns'
+                id='p1' value={char.p1}
+                placeholder={'They'}
+                onChange={handleTextChange}
+              />
+              <h4 className='modal-form-label'>/</h4>
+              <input
+                type='text'
+                className='modal-pronouns'
+                id='p2' value={char.p2}
+                placeholder={'Them'}
+                onChange={handleTextChange}
+              />
+            </div>
           </div>
-        </div>
+        </div> */}
+        <button className='done' onClick={handleSubmit}>
+          DONE
+        </button>
       </div>
-      <button className='done' onClick={handleSubmit}>
-        DONE
-      </button>
     </div>
-  )
+  );
 }

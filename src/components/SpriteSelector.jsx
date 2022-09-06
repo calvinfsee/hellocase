@@ -25,7 +25,7 @@ export default function SpriteSelector ({ pos, setPos }) {
         left: -42,
         behavior: "smooth"
       });
-      setPos((prev) => prev + 1);
+      setPos((prev) => prev - 1);
       setTimeout(() => setClicked(false), 250);
     }
   });
@@ -51,7 +51,7 @@ export default function SpriteSelector ({ pos, setPos }) {
   return (
     <div id='sprite-selector-container'>
       <div className='arrow'>
-        <MdOutlineKeyboardArrowLeft size={25} onClick={scrollLeft} />
+        <MdOutlineKeyboardArrowLeft size={25} onClick={scrollLeft} color={'#945521'} />
       </div>
         <div id='sprite-selector-viewport' ref={carouselRef}>
           <div id='sprite-selector'>
@@ -59,7 +59,7 @@ export default function SpriteSelector ({ pos, setPos }) {
           </div>
         </div>
       <div className='arrow'>
-        <MdOutlineKeyboardArrowRight size={25} onClick={scrollRight} />
+        <MdOutlineKeyboardArrowRight size={25} onClick={scrollRight} color={'#945521'} />
       </div>
     </div>
   )
