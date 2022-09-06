@@ -1,0 +1,44 @@
+#sprite-selector-container {
+  display: inline-flex;
+  overflow: hidden;
+  justify-content: center;
+  position: relative;
+  width: 102px;
+  height: auto;
+  align-items: center;
+}
+@keyframes walk {
+  from { background-position-x: 0px; }
+  to { background-position-x: 128px; }
+}
+
+#sprite-selector-viewport {
+  overflow: hidden;
+  width: 42px;
+}
+
+#sprite-selector {
+  display: inline-flex;
+  margin: 5px;
+}
+.arrow {
+  width: 30px;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sprite-container {
+  margin: 5px;
+}
+.sprite {
+  overflow: hidden;
+}
+.sprite-cell {
+  width: 32px;
+  height: 48px;
+}
+.selected {
+  animation: walk 1s steps(4) infinite;
+}

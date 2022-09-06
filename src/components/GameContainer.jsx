@@ -66,7 +66,7 @@ export default function GameContainer ({ playerId, playerRef }) {
     const playerIds = Object.keys(players);
     return playerIds.map((uid) => {
       const player = players[uid];
-      return player && player.online ? (<Player key={uid} {...player} />) : null;
+      return player && player.online && player.name ? (<Player key={uid} {...player} />) : null;
     });
   }
 

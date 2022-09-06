@@ -4,7 +4,7 @@
   height: 48px;
 }
 .Character {
-  transition: transform 0.4s;
+  transition: transform 0.7s;
 }
 .Character.you {
   z-index: 1;
@@ -23,7 +23,7 @@
 }
 
 .moving {
-  animation: walk 0.35s steps(4) 1;
+  animation: walk 0.5s steps(4) 1;
 }
 
 .Character_name-container {

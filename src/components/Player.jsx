@@ -15,7 +15,7 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
     const backgroundPositionY = `${direction * -48}px`;
     const backgroundPositionX = '0px';
     const styles = {
-      background: `url(src/assets/images/sprites/sithjester_${sprite}.png)`,
+      background: `url(src/assets/images/sprites/${sprite})`,
       backgroundPositionY
     }
 

@@ -4,14 +4,16 @@ import { ref, set } from 'firebase/database'
 import { auth } from '../firebase.js';
 import { updateProfile } from 'firebase/auth';
 import { sanitized } from '../helpers.js';
+import SpriteSelector from './SpriteSelector.jsx';
+import { spriteFileNames } from '../helpers.js';
 
 export default function CreateCharacter ({ setHasChar, playerId, playerRef, players }) {
   const [char, setChar] = useState({
     name: '',
     p1: '',
     p2: '',
-    sprite: 'russia'
   });
+  const [pos, setPos] = useState(0);
 
   function handleTextChange (e) {
     const newText = e.target.value;
@@ -28,7 +30,8 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
   async function handleSubmit () {
     const uid = playerId.current;
     const uref = playerRef.current;
-    const { name, p1, p2, sprite} = char;
+    const { name, p1, p2 } = char;
+    const sprite = spriteFileNames[pos];
     const pronouns = p1 + '/' + p2;
     if (name.length > 1 && sanitized(name)) {
       const newCharacter = {
@@ -60,6 +63,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
   return (
     <div id='create-char'>
       <h2 className='modal-header'>CREATE YOUR CHARACTER</h2>
+      <SpriteSelector pos={pos} setPos={setPos} />
       <div className='modal-fields-container'>
         <div className='modal-field'>
           <h3 className='modal-form-label'>NAME:</h3>
