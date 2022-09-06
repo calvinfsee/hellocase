@@ -12,18 +12,19 @@
 .Character.you .Character_you-arrow {
   display: block;
 }
-/* .Character_you-arrow {
-  display: none;
-  position: absolute;
-  top:-48px;
-  left: 5px;
-  width: 7px;
-  height: 5px;
-  background: url(../images/arrow.png) no-repeat no-repeat;
-} */
+
+@keyframes walk {
+  from { background-position-x: 0px; }
+  to { background-position-x: 128px; }
+}
+
 .Character_sprite {
   overflow: hidden;
   background: url(../images/russia.png);
+}
+
+.moving {
+  animation: walk 0.4s steps(4) 1;
 }
 
 .Character_name-container {
@@ -39,3 +40,4 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
+

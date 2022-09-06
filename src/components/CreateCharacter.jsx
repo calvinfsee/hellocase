@@ -32,7 +32,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef }) {
     const pronouns = p1 + '/' + p2;
     if (name.length > 1 && sanitized(name)) {
       const newCharacter = {
-        id: uid,
+        uid: uid,
         direction: 0,
         name,
         pronouns: pronouns.length > 1 ? pronouns : 'They/Them',

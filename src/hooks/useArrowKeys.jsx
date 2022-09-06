@@ -10,24 +10,25 @@ export default function useArrowKeys (playerId, playersRef, setHasChar) {
   const downSafe = useRef(true);
 
   function handleArrowPress (xChange = 0, yChange = 0, dir = 0) {
-    const id = playerId.current;
+    const { uid, displayName } = auth.currentUser;
     const players = playersRef.current;
 
-    if (!id || !players[id]) {
+    if (!uid || !players[uid]) {
+      console.log('handleArrowPress: ', uid);
       setHasChar(false);
       return;
     }
 
-    const { x, y, direction } = players[id];
+    const { x, y, direction } = players[uid];
 
     const newX = x + xChange;
     const newY = y + yChange;
     if (!isSolid(newX, newY)) {
       const newPlayerData = { x: newX, y: newY, direction: dir };
-      update(ref(database, `players/${id}`), newPlayerData);
+      update(ref(database, `players/${uid}`), newPlayerData);
     } else if (direction !== dir) {
       const newDirData = { direction: dir};
-      update(ref(database, `players/${id}`), newDirData);
+      update(ref(database, `players/${uid}`), newDirData);
     }
   }
 

@@ -59,15 +59,9 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   function renderPlayers () {
     const playerIds = Object.keys(players);
-    return playerIds.map((id) => {
-      const player = players[id];
-      if (!player || !player.online) {
-        return null;
-      }
-      const { x, y } = players[id];
-      const coor = `translate3d(${32 * x - 1}px, ${32 * y - 2}px, 0)`;
-
-      return (<Player key={id + coor} {...player} coor={coor} />);
+    return playerIds.map((uid) => {
+      const player = players[uid];
+      return player && player.online ? (<Player key={uid} {...player} />) : null;
     });
   }
 
