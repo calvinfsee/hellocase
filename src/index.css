@@ -60,3 +60,14 @@ html, body, #root, .App {
   justify-content: center;
   align-items: center;
 }
+
+@font-face {
+  font-family: "Pixelated Regular";
+  src: url("./assets/fonts/Pixelated-Regular.ttf");
+}
+* {
+	font-family: 'Pixelated Regular';
+}
+span {
+	font-family: 'Pixelated Regular';
+}
