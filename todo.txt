@@ -1,6 +1,5 @@
 HIGH PRIORITY
   Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
-  Implement sprite selector
   Implement Chat bubbles
   Research text sanitization
   Make things flash red when error

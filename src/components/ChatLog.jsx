@@ -42,7 +42,6 @@ export default function ChatLog () {
   return (
     <div id='chat-log-wrapper'>
       <div id='inner-wrapper'>
-      {/* <h2 className='chat-log-header'>Chat Log</h2> */}
       <div id='chat-log-container'>
         <div id='chat-log'>
           {messages && messages.map(msg => <ChatMessage key={msg.id} {...msg} />)}

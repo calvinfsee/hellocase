@@ -1,7 +1,9 @@
-import { useMemo, useEffect, useRef, useState } from 'react';
+import { useMemo, useEffect, useRef, useState, useContext } from 'react';
+import ChatBubble from './ChatBubble.jsx';
 import '../assets/stylesheets/Player.css';
 
 export default function Player ({ name, direction, x, y, uid, sprite }) {
+
   const lastX = useRef(x);
   const lastY = useRef(y);
   const dirRef = useRef({
@@ -49,6 +51,7 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
 
   return (
     <div id={uid} className='Character grid-cell' style={coordinates ? coordinates : defaultCoor}>
+      <ChatBubble uid={uid} />
       <div className={spriteClass} style={spriteStyle} onAnimationEnd={onAnimationEnd}></div>
       <div className='Character_name-container'>
         <span className='Character_name'>{name}</span>
