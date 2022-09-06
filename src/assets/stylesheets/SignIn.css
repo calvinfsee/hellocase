@@ -1,18 +1,18 @@
 #sign-in-container {
-  height: 50vh;
-  width: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: white;
+  background-color: #FFD284;
   border-radius: 2px;
-  border: 2px solid black;
+  border: 2px solid #945521;
 }
 #sign-in {
   height: 6vh;
-  background-color: green;
+  background-color: #FFD284;
   font-size: 4vh;
-  border: 2px solid black;
   border-radius: 5px;
+}
+#sign-in-container:hover {
+  background-color: #EBA867;
 }

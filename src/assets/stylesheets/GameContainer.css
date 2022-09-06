@@ -1,13 +1,23 @@
 #game-container {
-  background-color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  position: relative;
   width: 451px;
   height: 430px;
   background: url(../images/bar.png) no-repeat no-repeat;
   transform: scale(2);
   image-rendering: pixelated;
+  border: 3px solid #945521;
+  border-radius: 2px;
+}
+#game-container-wrapper {
+  padding: 10px;
+  background-color: black;
+  border: 2px solid #582F33;
+  border-radius: 3px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

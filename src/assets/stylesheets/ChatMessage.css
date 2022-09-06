@@ -6,14 +6,18 @@
   margin: 1px;
   height: auto;
   width: 95%;
+  color: #945521;
 }
 .chat-message-user {
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 18px;
+  color: #945521;
 }
 .me {
-  color: blue;
+  color: #582F33;
+  font-weight: bold;
 }
 .chat-message-text {
-  font-size: 14px;
+  color: #945521;
+  font-size: 18px;
+  text-align: center;
 }
