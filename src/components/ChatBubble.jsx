@@ -5,20 +5,23 @@ import moment from 'moment';
 
 
 export default function ChatBubble ({ id, displayName, uid, text, createdAt }) {
-  const { messages, messagesRef } = useContext(ChatContext);
+  const { playerMessages } = useContext(ChatContext);
+  const [lastRead, setLastRead] = useState(0);
+
   useEffect(() => {
-  }, [messages]);
 
-  function recentMessages () {
-    const now = moment().subtract(1, 'minutes');
-    const i = messages.length - 1;
-    while (i > 0) {
-      let createdAt = moment(messages[i].createdAt);
-      if (createdAt.diff(now)) {
+  }, [playerMessages]);
 
-      }
-    }
-  }
+  // function recentMessages () {
+  //   const now = moment().subtract(1, 'minutes');
+  //   const i = messages.length - 1;
+  //   while (i > 0) {
+  //     let createdAt = moment(messages[i].createdAt);
+  //     if (createdAt.diff(now)) {
+
+  //     }
+  //   }
+  // }
 
   return (
     <div className='chat-bubble-container'>
