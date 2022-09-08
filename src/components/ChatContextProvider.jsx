@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useRef } from 'react';
+import { createContext, useState, useEffect, useRef, useMemo } from 'react';
 import { firestore } from '../firebase.js';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { collection, orderBy, limit, query, where } from 'firebase/firestore';
@@ -39,24 +39,24 @@ export default function ChatContextProvider ({ children }) {
   const lastRead = useRef(0);
   const [playerMessages, setPlayerMessages] = useState({});
 
+  //! FIX THIS
   useEffect(() => {
     if (messages) {
-      setPlayerMessages((prev) => {
-        let newMessages = prev;
-        let i = lastRead.current;
-        while (i < messages.length) {
-          let msg = messages[i];
-          if (!newMessages[msg.uid]) {
-            newMessages[msg.uid] = [];
-          }
-            newMessages[msg.uid].push(msg);
-          i++;
+      let newPlayerMessages = {};
+      for (let i = 0; i < messages.length; i++) {
+        let msg = messages[i];
+        if (!newPlayerMessages[msg.uid]) {
+          newPlayerMessages[msg.uid] = [];
         }
-        lastRead.current = i;
-        return newMessages;
-      });
+        newPlayerMessages[msg.uid].push(msg.text);
+      }
+      setPlayerMessages(newPlayerMessages);
     }
   }, [messages]);
+
+  useEffect(() => {
+    console.log(playerMessages);
+  }, [playerMessages]);
 
   return (
     <ChatContext.Provider value={{ messages, messagesRef, playerMessages }}>

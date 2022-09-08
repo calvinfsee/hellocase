@@ -73,7 +73,7 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   return (
     <div id='game-container'>
-      <ChatBubble />
+      {/* <ChatBubble /> */}
       {hasChar ? null : <CreateCharacter players={players} setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
       {renderPlayers()}
     </div>
