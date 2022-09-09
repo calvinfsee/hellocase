@@ -8,7 +8,6 @@ export default function ChatBubble ({ uid }) {
   const { playerMessages } = useContext(ChatContext);
   const [displayState, setDisplayState] = useState({
     displayText: '',
-    display: false,
     queuePos: 0
   });
   const [show, setShow] = useState(false);
@@ -32,7 +31,7 @@ export default function ChatBubble ({ uid }) {
 
   useEffect(() => {
     displayMessage();
-  }, [playerMessages, displayState]);
+  }, [playerMessages, displayState, show]);
 
   const onAnimationEnd  = useCallback(() => {
     console.log('animation end!');

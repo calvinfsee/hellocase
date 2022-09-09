@@ -11,7 +11,6 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
   });
   const animationRef = useRef('Character_sprite grid-cell');
   const [spriteClass, setSpriteClass] = useState('Character_sprite grid-cell');
-  // const [moving, setMoving] = useState(false)
 
   const spriteStyle = useMemo(() => {
     const backgroundPositionY = `${direction * -48}px`;
@@ -20,7 +19,6 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
       background: `url(src/assets/images/sprites/${sprite})`,
       backgroundPositionY
     }
-
     return styles;
   }, [direction]);
   useEffect(() => {
@@ -51,7 +49,7 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
 
   return (
     <div id={uid} className='Character grid-cell' style={coordinates ? coordinates : defaultCoor}>
-      <ChatBubble uid={uid} />
+      {/* <ChatBubble uid={uid} /> */}
       <div className={spriteClass} style={spriteStyle} onAnimationEnd={onAnimationEnd}></div>
       <div className='Character_name-container'>
         <span className='Character_name'>{name}</span>
