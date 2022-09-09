@@ -37,7 +37,7 @@ export default function SpriteSelector ({ pos, setPos }) {
   function renderSprites () {
     return spriteFileNames.map((sprite, i) => {
       const styles = {
-        background: `url(src/assets/images/sprites/${sprite})`,
+        background: `url(/sprites/${sprite})`,
       }
       const spriteClass = i === pos ? 'sprite sprite-cell selected' : 'sprite sprite-cell';
       return (

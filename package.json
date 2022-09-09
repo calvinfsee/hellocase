@@ -2,15 +2,17 @@
   "name": "hellocase",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "nodemon index.js"
   },
   "dependencies": {
+    "express": "^4.18.1",
     "firebase": "^9.9.4",
     "moment": "^2.29.4",
+    "nodemon": "^2.0.19",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.0.3",
