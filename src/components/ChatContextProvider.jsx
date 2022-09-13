@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect, useRef, useMemo } from 'react';
-import { firestore } from '../firebase.js';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { collection, orderBy, limit, query, where } from 'firebase/firestore';
+import { createContext, useState, useEffect, useRef, useMemo } from "react";
+import { firestore } from "../firebase.js";
+import { useCollectionData } from "react-firebase-hooks/firestore";
+import { collection, orderBy, limit, query, where } from "firebase/firestore";
 
 export const ChatContext = createContext({});
 
@@ -21,20 +21,32 @@ const messageConverter = {
       createdAt: message.createdAt,
       text: message.text,
       uid: message.uid,
-      displayName: message.displayName
+      displayName: message.displayName,
     };
   },
   fromFirestore: function (snapshot, options) {
     const data = snapshot.data(options);
-    return new Message(snapshot.id, data.createdAt, data.text, data.uid, data.displayName);
-  }
-}
+    return new Message(
+      snapshot.id,
+      data.createdAt,
+      data.text,
+      data.uid,
+      data.displayName
+    );
+  },
+};
 
-export default function ChatContextProvider ({ children }) {
+export default function ChatContextProvider({ children }) {
   //! Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
   const [loggedInAt, setLoggedInAt] = useState(new Date());
-  const messagesRef = collection(firestore, 'messages').withConverter(messageConverter);
-  const messagesQuery = query(messagesRef, where('createdAt', '>=', loggedInAt), orderBy('createdAt'));
+  const messagesRef = collection(firestore, "messages").withConverter(
+    messageConverter
+  );
+  const messagesQuery = query(
+    messagesRef,
+    where("createdAt", ">=", loggedInAt),
+    orderBy("createdAt")
+  );
   const [messages] = useCollectionData(messagesQuery);
   // const lastRead = useRef(0);
   // const [playerMessages, setPlayerMessages] = useState({});
@@ -85,5 +97,5 @@ export default function ChatContextProvider ({ children }) {
     <ChatContext.Provider value={{ messages, messagesRef }}>
       {children}
     </ChatContext.Provider>
-  )
+  );
 }

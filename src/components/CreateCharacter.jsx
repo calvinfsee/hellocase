@@ -1,24 +1,29 @@
-import '../assets/stylesheets/CreateCharacter.css';
-import { useState, useEffect } from 'react';
-import { ref, set } from 'firebase/database'
-import { auth } from '../firebase.js';
-import { updateProfile } from 'firebase/auth';
-import { sanitized } from '../helpers.js';
-import SpriteSelector from './SpriteSelector.jsx';
-import { spriteFileNames } from '../helpers.js';
+import "../assets/stylesheets/CreateCharacter.css";
+import { useState, useEffect } from "react";
+import { ref, set } from "firebase/database";
+import { auth } from "../firebase.js";
+import { updateProfile } from "firebase/auth";
+import { sanitized } from "../helpers.js";
+import SpriteSelector from "./SpriteSelector.jsx";
+import { spriteFileNames } from "../helpers.js";
 
-export default function CreateCharacter ({ setHasChar, playerId, playerRef, players }) {
+export default function CreateCharacter({
+  setHasChar,
+  playerId,
+  playerRef,
+  players,
+}) {
   const [char, setChar] = useState({
-    name: '',
-    p1: '',
-    p2: '',
+    name: "",
+    p1: "",
+    p2: "",
   });
   const [pos, setPos] = useState(0);
 
-  function handleTextChange (e) {
+  function handleTextChange(e) {
     const newText = e.target.value;
     if (!sanitized(newText)) {
-      console.error('Bad input!');
+      console.error("Bad input!");
       return;
     }
     setChar((prev) => {
@@ -27,18 +32,18 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
     });
   }
 
-  async function handleSubmit () {
+  async function handleSubmit() {
     const uid = playerId.current;
     const uref = playerRef.current;
     const { name, p1, p2 } = char;
     const sprite = spriteFileNames[pos];
-    const pronouns = p1 + '/' + p2;
+    const pronouns = p1 + "/" + p2;
     if (name.length > 1 && sanitized(name)) {
       const newCharacter = {
         uid: uid,
         direction: 0,
         name,
-        pronouns: pronouns.length > 1 ? pronouns : 'They/Them',
+        pronouns: pronouns.length > 1 ? pronouns : "They/Them",
         online: true,
         sprite,
         x: -5,
@@ -48,7 +53,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
       await updateProfile(auth.currentUser, { displayName: name });
       setHasChar(true);
     } else {
-      console.log('invalid');
+      console.log("invalid");
     }
   }
 
@@ -61,19 +66,20 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
   }, [players]);
 
   return (
-    <div id='create-char-wrapper'>
-      <div id='create-char'>
+    <div id="create-char-wrapper">
+      <div id="create-char">
         {/* <h2 className='modal-header'>CREATE YOUR CHARACTER</h2> */}
         <input
-                type='text'
-                className='name-input'
-                id='name' value={char.name}
-                placeholder={'NAME'}
-                onChange={handleTextChange}
-              />
+          type="text"
+          className="name-input"
+          id="name"
+          value={char.name}
+          placeholder={"NAME"}
+          onChange={handleTextChange}
+        />
         {/* <div className='name-sprite-container'> */}
 
-          <SpriteSelector pos={pos} setPos={setPos} />
+        <SpriteSelector pos={pos} setPos={setPos} />
         {/* </div> */}
         {/* <div className='modal-fields-container'>
           <div className='modal-field'>
@@ -97,7 +103,7 @@ export default function CreateCharacter ({ setHasChar, playerId, playerRef, play
             </div>
           </div>
         </div> */}
-        <button className='done' onClick={handleSubmit}>
+        <button className="done" onClick={handleSubmit}>
           DONE
         </button>
       </div>

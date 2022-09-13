@@ -1,14 +1,22 @@
-import '../assets/stylesheets/GameContainer.css';
-import { useState, useEffect, useRef } from 'react';
-import useArrowKeys from '../hooks/useArrowKeys.jsx';
-import Player from './Player.jsx';
-import { ref, onDisconnect, onValue, onChildAdded, get, child, update } from 'firebase/database';
-import { auth, database } from '../firebase.js';
-import { randomSpot } from '../helpers.js';
-import CreateCharacter from './CreateCharacter.jsx';
-import ChatBubble from './ChatBubble.jsx';
+import "../assets/stylesheets/GameContainer.css";
+import { useState, useEffect, useRef } from "react";
+import useArrowKeys from "../hooks/useArrowKeys.jsx";
+import Player from "./Player.jsx";
+import {
+  ref,
+  onDisconnect,
+  onValue,
+  onChildAdded,
+  get,
+  child,
+  update,
+} from "firebase/database";
+import { auth, database } from "../firebase.js";
+import { randomSpot } from "../helpers.js";
+import CreateCharacter from "./CreateCharacter.jsx";
+import ChatBubble from "./ChatBubble.jsx";
 
-export default function GameContainer ({ playerId, playerRef }) {
+export default function GameContainer({ playerId, playerRef }) {
   const [players, setPlayers] = useState({});
   const allPlayerRef = useRef(ref(database, `players`));
   const playersRef = useRef(players);
@@ -25,7 +33,7 @@ export default function GameContainer ({ playerId, playerRef }) {
       //Fires whenever a new node is added to the tree
       const addedPlayer = snapshot.val();
       setPlayers((prev) => {
-        const newPlayerList = {...prev, [addedPlayer.uid]: addedPlayer };
+        const newPlayerList = { ...prev, [addedPlayer.uid]: addedPlayer };
         playersRef.current = newPlayerList;
         return newPlayerList;
       });
@@ -36,7 +44,7 @@ export default function GameContainer ({ playerId, playerRef }) {
       setPlayers({});
       unsubOne();
       unsubTwo();
-    }
+    };
   }, []);
 
   //Check if the player has a character in the database
@@ -50,7 +58,7 @@ export default function GameContainer ({ playerId, playerRef }) {
         if (snapshot.exists() && snapshot.val().name) {
           // update(uref, { online: true });
         } else {
-          console.log('GameContainer setHasChar to false');
+          console.log("GameContainer setHasChar to false");
           setHasChar(false);
         }
       })
@@ -63,19 +71,28 @@ export default function GameContainer ({ playerId, playerRef }) {
 
   useArrowKeys(playerId, playersRef, setHasChar);
 
-  function renderPlayers () {
+  function renderPlayers() {
     const playerIds = Object.keys(players);
     return playerIds.map((uid) => {
       const player = players[uid];
-      return player && player.online && player.name ? (<Player key={uid} {...player} />) : null;
+      return player && player.online && player.name ? (
+        <Player key={uid} {...player} />
+      ) : null;
     });
   }
 
   return (
-    <div id='game-container'>
+    <div id="game-container">
       {/* <ChatBubble /> */}
-      {hasChar ? null : <CreateCharacter players={players} setHasChar={setHasChar} playerId={playerId} playerRef={playerRef} />}
+      {hasChar ? null : (
+        <CreateCharacter
+          players={players}
+          setHasChar={setHasChar}
+          playerId={playerId}
+          playerRef={playerRef}
+        />
+      )}
       {renderPlayers()}
     </div>
-  )
+  );
 }

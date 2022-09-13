@@ -7,12 +7,12 @@
   padding: 5px;
   right: 2vw;
   background-color: #945521;
-  border: 3px solid #582F33;
+  border: 3px solid #582f33;
 }
 #inner-wrapper {
   display: flex;
-  background-color: #FFD284;
-  border: 3px solid #582F33;
+  background-color: #ffd284;
+  border: 3px solid #582f33;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -26,7 +26,6 @@
   overflow-y: auto;
   overflow-x: hidden;
   width: 100%;
-
 }
 .chat-log-header {
   font-size: 35px;
@@ -47,7 +46,7 @@
 #chat-input {
   width: 99%;
   font-size: 14px;
-  background-color: #EBA867;
+  background-color: #eba867;
   border-width: 4px 0 2px 0;
   border-color: #945521;
   height: 20px;

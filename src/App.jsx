@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-import { ref, onDisconnect, update } from 'firebase/database';
-import './assets/stylesheets/App.css';
-import { auth, database } from './firebase.js';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import GameContainer from './components/GameContainer.jsx';
-import SignIn from './components/SignIn.jsx';
-import SignOut from './components/SignOut.jsx';
-import ChatLog from './components/ChatLog.jsx';
-import ChatContextProvider from './components/ChatContextProvider.jsx';
+import { useState, useEffect, useRef } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { ref, onDisconnect, update } from "firebase/database";
+import "./assets/stylesheets/App.css";
+import { auth, database } from "./firebase.js";
+import { useAuthState } from "react-firebase-hooks/auth";
+import GameContainer from "./components/GameContainer.jsx";
+import SignIn from "./components/SignIn.jsx";
+import SignOut from "./components/SignOut.jsx";
+import ChatLog from "./components/ChatLog.jsx";
+import ChatContextProvider from "./components/ChatContextProvider.jsx";
 
 //TODO: Create App Context to clean up prop drilling
 export default function App() {
@@ -38,19 +38,19 @@ export default function App() {
   }, [user]);
 
   return (
-    <div className='App'>
+    <div className="App">
       {user ? <SignOut setLoading={setLoading} user={user} /> : null}
       {user ? <h1>Signed In</h1> : <SignIn />}
       {loading ? null : <ChatRoom playerId={playerId} playerRef={playerRef} />}
     </div>
-  )
+  );
 }
 
-function ChatRoom ({ playerId, playerRef }) {
+function ChatRoom({ playerId, playerRef }) {
   return (
     <ChatContextProvider>
       <GameContainer playerId={playerId} playerRef={playerRef} />
       <ChatLog />
     </ChatContextProvider>
-  )
+  );
 }

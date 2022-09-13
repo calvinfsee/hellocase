@@ -8,8 +8,12 @@
   align-items: center;
 }
 @keyframes walk {
-  from { background-position-x: 0px; }
-  to { background-position-x: 128px; }
+  from {
+    background-position-x: 0px;
+  }
+  to {
+    background-position-x: 128px;
+  }
 }
 
 #sprite-selector-viewport {

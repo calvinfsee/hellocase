@@ -1,35 +1,34 @@
-import { useMemo, useEffect, useRef, useState, useContext } from 'react';
-import ChatBubble from './ChatBubble.jsx';
-import '../assets/stylesheets/Player.css';
+import { useMemo, useEffect, useRef, useState, useContext } from "react";
+import ChatBubble from "./ChatBubble.jsx";
+import "../assets/stylesheets/Player.css";
 
-export default function Player ({ name, direction, x, y, uid, sprite }) {
-
+export default function Player({ name, direction, x, y, uid, sprite }) {
   const lastX = useRef(x);
   const lastY = useRef(y);
   const dirRef = useRef({
-    backgroundPositionY: `${direction * -48}px`
+    backgroundPositionY: `${direction * -48}px`,
   });
-  const animationRef = useRef('Character_sprite grid-cell');
-  const [spriteClass, setSpriteClass] = useState('Character_sprite grid-cell');
+  const animationRef = useRef("Character_sprite grid-cell");
+  const [spriteClass, setSpriteClass] = useState("Character_sprite grid-cell");
 
   const spriteStyle = useMemo(() => {
     const backgroundPositionY = `${direction * -48}px`;
-    const backgroundPositionX = '0px';
+    const backgroundPositionX = "0px";
     const styles = {
       background: `url(/sprites/${sprite})`,
-      backgroundPositionY
-    }
+      backgroundPositionY,
+    };
     return styles;
   }, [direction]);
   useEffect(() => {
     if (lastX.current !== x || lastY.current !== y) {
       lastX.current = x;
       lastY.current = y;
-      setSpriteClass('Character_sprite grid-cell moving');
+      setSpriteClass("Character_sprite grid-cell moving");
     }
   }, [x, y]);
-  function onAnimationEnd () {
-    setSpriteClass('Character_sprite grid-cell');
+  function onAnimationEnd() {
+    setSpriteClass("Character_sprite grid-cell");
   }
 
   const coordinates = useMemo(() => {
@@ -37,24 +36,32 @@ export default function Player ({ name, direction, x, y, uid, sprite }) {
     const zIndex = y;
     const styles = {
       transform,
-      zIndex
-    }
+      zIndex,
+    };
     return styles;
   }, [x, y]);
   //Player sprite is 32 x 48
 
   const defaultCoor = {
-    transform: `translate3d(-161px, -98px, 0)`
+    transform: `translate3d(-161px, -98px, 0)`,
   };
 
   return (
-    <div id={uid} className='Character grid-cell' style={coordinates ? coordinates : defaultCoor}>
+    <div
+      id={uid}
+      className="Character grid-cell"
+      style={coordinates ? coordinates : defaultCoor}
+    >
       {/* <ChatBubble uid={uid} /> */}
-      <div className={spriteClass} style={spriteStyle} onAnimationEnd={onAnimationEnd}></div>
-      <div className='Character_name-container'>
-        <span className='Character_name'>{name}</span>
+      <div
+        className={spriteClass}
+        style={spriteStyle}
+        onAnimationEnd={onAnimationEnd}
+      ></div>
+      <div className="Character_name-container">
+        <span className="Character_name">{name}</span>
       </div>
-      <div className='Character_you-arrow'></div>
+      <div className="Character_you-arrow"></div>
     </div>
   );
 }

@@ -4,10 +4,10 @@
   right: 2vh;
   height: 6vh;
   font-size: 3vh;
-  background-color: #FFD284;
+  background-color: #ffd284;
   border: 4px solid #945521;
   border-radius: 4px;
 }
 #sign-out:hover {
-  background-color: #EBA867;
+  background-color: #eba867;
 }
