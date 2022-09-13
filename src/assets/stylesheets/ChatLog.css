@@ -42,6 +42,7 @@
   margin: 0;
   flex-shrink: 0;
   margin: 2px;
+  height: 98%;
 }
 #chat-input {
   width: 99%;
