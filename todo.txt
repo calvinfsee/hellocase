@@ -1,19 +1,9 @@
 HIGH PRIORITY
-  Verify that the useCollectionData hook actually detaches the snapshot listener on unmounting
-  Implement Chat bubbles
   Research text sanitization
-  Make things flash red when error
+  Make components flash red when they encounter an error
+  Layer solid map elements
 
 EXTRA
-  Make walk animation smoother or restrict players from moving too quickly
-  Modify solid objects like tables so that the player sprites show up behind them
-  Style chatlog
-  Style the create a character modal
-  Style sign in and sign out buttons
-  Style background
-  Pick a font
   Add emotes?
   Allow players to modify their sprite and pronouns
   Private messaging (?)
-  Add github link
-  Deploy Project
