@@ -10,7 +10,6 @@ import SignOut from "./components/SignOut.jsx";
 import ChatLog from "./components/ChatLog.jsx";
 import ChatContextProvider from "./components/ChatContextProvider.jsx";
 
-//TODO: Create App Context to clean up prop drilling
 export default function App() {
   //player id needs to be a ref to mutate
   const playerId = useRef(null);

@@ -1,5 +1,4 @@
 import { useMemo, useEffect, useRef, useState, useContext } from "react";
-import ChatBubble from "./ChatBubble.jsx";
 import "../assets/stylesheets/Player.css";
 
 export default function Player({ name, direction, x, y, uid, sprite }) {
@@ -52,7 +51,6 @@ export default function Player({ name, direction, x, y, uid, sprite }) {
       className="Character grid-cell"
       style={coordinates ? coordinates : defaultCoor}
     >
-      {/* <ChatBubble uid={uid} /> */}
       <div
         className={spriteClass}
         style={spriteStyle}

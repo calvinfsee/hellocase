@@ -11,7 +11,6 @@ export default function ChatLog() {
   const [text, setText] = useState("");
   const scrollRef = useRef(null);
 
-  //! Research whether Sanitizing text is neccessary for chat log
   function handleOnChange(e) {
     const newText = e.target.value;
     if (!sanitized(newText)) {

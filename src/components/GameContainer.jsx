@@ -14,7 +14,6 @@ import {
 import { auth, database } from "../firebase.js";
 import { randomSpot } from "../helpers.js";
 import CreateCharacter from "./CreateCharacter.jsx";
-import ChatBubble from "./ChatBubble.jsx";
 
 export default function GameContainer({ playerId, playerRef }) {
   const [players, setPlayers] = useState({});
@@ -83,7 +82,6 @@ export default function GameContainer({ playerId, playerRef }) {
 
   return (
     <div id="game-container">
-      {/* <ChatBubble /> */}
       {hasChar ? null : (
         <CreateCharacter
           players={players}
