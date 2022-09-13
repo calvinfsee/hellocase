@@ -39,56 +39,68 @@ export default function useArrowKeys(playerId, playersRef, setHasChar) {
         if (leftSafe.current) {
           handleArrowPress(-1, 0, 1);
           leftSafe.current = false;
+          setTimeout(() => {
+            leftSafe.current = true;
+          }, 300);
         }
         break;
       case "ArrowRight":
         if (rightSafe.current) {
           handleArrowPress(1, 0, 2);
           rightSafe.current = false;
+          setTimeout(() => {
+            rightSafe.current = true;
+          }, 300);
         }
         break;
       case "ArrowUp":
         if (upSafe.current) {
           handleArrowPress(0, -1, 3);
           upSafe.current = false;
+          setTimeout(() => {
+            upSafe.current = true;
+          }, 300);
         }
         break;
       case "ArrowDown":
         if (downSafe.current) {
           handleArrowPress(0, 1, 0);
           downSafe.current = false;
+          setTimeout(() => {
+            downSafe.current = true;
+          }, 300);
         }
         break;
       default:
         break;
     }
   }
-  function keyUp(event) {
-    switch (event.code) {
-      case "ArrowLeft":
-        leftSafe.current = true;
-        break;
-      case "ArrowRight":
-        rightSafe.current = true;
-        break;
-      case "ArrowUp":
-        upSafe.current = true;
-        break;
-      case "ArrowDown":
-        downSafe.current = true;
-        break;
-      default:
-        break;
-    }
-  }
+  // function keyUp(event) {
+  //   switch (event.code) {
+  //     case "ArrowLeft":
+  //       leftSafe.current = true;
+  //       break;
+  //     case "ArrowRight":
+  //       rightSafe.current = true;
+  //       break;
+  //     case "ArrowUp":
+  //       upSafe.current = true;
+  //       break;
+  //     case "ArrowDown":
+  //       downSafe.current = true;
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // }
 
   useEffect(() => {
     window.addEventListener("keydown", keyDown);
-    window.addEventListener("keyup", keyUp);
+    // window.addEventListener("keyup", keyUp);
 
     return () => {
       window.removeEventListener("keydown", keyDown);
-      window.removeEventListener("keyup", keyUp);
+      // window.removeEventListener("keyup", keyUp);
     };
   }, []);
 }

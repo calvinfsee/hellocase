@@ -4,7 +4,7 @@
   height: 48px;
 }
 .Character {
-  transition: transform 0.4s;
+  transition: transform 0.35s;
 }
 .Character.you {
   z-index: 1;
