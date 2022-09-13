@@ -1,0 +1,5 @@
+An online virtual chatroom built with React and Firebase.
+
+To run
+- yarn install
+- yarn dev
